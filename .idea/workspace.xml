@@ -2,27 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d99d237-9fb2-454b-8867-c04e9ca0027b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MANIFEST.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/api.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/ceti/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/config/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/config/desktop.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/config/docs.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/hooks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/modules.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/patches.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/public/js/ceti-api.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/public/js/ceti-form-class.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/public/js/ceti-modal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/templates/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/templates/pages/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +30,12 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="\\wsl$\Ubuntu-18.04\home\frappe\frappe-restaurant\apps\ceti\ceti\public\js" />
+      <recent name="\\wsl$\Ubuntu-18.04\home\frappe\frappe-restaurant\apps\ceti\ceti" />
+    </key>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -61,22 +47,50 @@
       <option name="presentableId" value="Default" />
       <updated>1588233184136</updated>
       <workItem from="1588233186116" duration="1227000" />
-      <workItem from="1588235309352" duration="321000" />
+      <workItem from="1588235309352" duration="711000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial Commit">
+      <created>1588235853432</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1588235853432</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Update to Version 0.0.2">
+      <created>1588235875919</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1588235875919</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Commit" />
+    <MESSAGE value="Update to Version 0.0.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update to Version 0.0.2" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="653" y="274" key="#Notifications" timestamp="1588236001145">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="653" y="274" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1588236001145" />
+    <state x="372" y="0" key="CommitChangelistDialog2" timestamp="1588235873674">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1588235873674" />
     <state x="548" y="166" key="FileChooserDialogImpl" timestamp="1588235562095">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="548" y="166" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588235562095" />
-    <state x="360" y="144" key="Vcs.Push.Dialog.v2" timestamp="1588235354323">
+    <state x="360" y="144" key="Vcs.Push.Dialog.v2" timestamp="1588236016071">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="144" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588235354323" />
+    <state x="360" y="144" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588236016071" />
     <state x="479" y="145" width="578" height="534" key="find.popup" timestamp="1588233211401">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
