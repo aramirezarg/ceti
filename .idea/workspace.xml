@@ -45,7 +45,7 @@
       <option name="presentableId" value="Default" />
       <updated>1588233184136</updated>
       <workItem from="1588233186116" duration="1227000" />
-      <workItem from="1588235309352" duration="1011000" />
+      <workItem from="1588235309352" duration="1326000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1588235853432</created>
@@ -68,7 +68,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588236126416</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update to Version 0.0.2">
+      <created>1588236329121</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1588236329121</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -84,25 +91,41 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="653" y="274" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1588236001145" />
-    <state x="372" y="0" key="CommitChangelistDialog2" timestamp="1588236122127">
+    <state x="372" y="0" key="CommitChangelistDialog2" timestamp="1588236326705">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1588236122127" />
+    <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1588236326705" />
     <state x="548" y="166" key="FileChooserDialogImpl" timestamp="1588235562095">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="548" y="166" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588235562095" />
-    <state x="360" y="144" key="Vcs.Push.Dialog.v2" timestamp="1588236133247">
+    <state x="360" y="144" key="Vcs.Push.Dialog.v2" timestamp="1588236341593">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="144" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588236133247" />
+    <state x="360" y="144" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588236341593" />
     <state x="479" y="145" width="578" height="534" key="find.popup" timestamp="1588233211401">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="479" y="145" width="578" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1588233211401" />
-    <state x="512" y="306" key="git4idea.ui.GitResetDialog" timestamp="1588236312304">
+    <state x="501" y="200" key="git4idea.merge.GitMergeDialog" timestamp="1588236445724">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="512" y="306" key="git4idea.ui.GitResetDialog/0.0.1536.824@0.0.1536.824" timestamp="1588236312304" />
+    <state x="501" y="200" key="git4idea.merge.GitMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1588236445724" />
+    <state x="501" y="200" key="git4idea.merge.GitPullDialog" timestamp="1588236523559">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="501" y="200" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1588236523559" />
+    <state x="529" y="273" key="git4idea.rebase.GitRebaseDialog" timestamp="1588236393523">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="529" y="273" key="git4idea.rebase.GitRebaseDialog/0.0.1536.824@0.0.1536.824" timestamp="1588236393523" />
+    <state x="568" y="312" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1588236634002">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="568" y="312" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1536.824@0.0.1536.824" timestamp="1588236634002" />
+    <state x="512" y="306" key="git4idea.ui.GitResetDialog" timestamp="1588236512025">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="512" y="306" key="git4idea.ui.GitResetDialog/0.0.1536.824@0.0.1536.824" timestamp="1588236512025" />
   </component>
 </project>
