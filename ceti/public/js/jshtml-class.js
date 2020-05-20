@@ -19,9 +19,8 @@ class JSHtml{
 	}
 
 	set_self(){
-	    let self = this;
-	    setTimeout(function(){
-	        self.self = document.querySelector(`${self.tag}[${self.identifier}='${self.identifier}']`);
+	    setTimeout(() => {
+	        this.self = document.querySelector(`${this.tag}[${this.identifier}='${this.identifier}']`);
 	    }, 0)
 	}
 
@@ -74,78 +73,74 @@ class JSHtml{
 	}
 
 	float(){
-		let self = this;
-		self.setInputFilter(function(value) {
+		this.setInputFilter((value) => {
   			return /^-?\d*[.,]?\d*$/.test(value);
 		});
-		return self;
+		return this;
 	}
 
 	on(listener, fn, method=null){
-		let self = this;
 		if(typeof listener == "object"){
 			for (let listen in listener){
 				if(!listener.hasOwnProperty(listen)) continue;
-				self.set_listener(listener[listen], fn);
+				this.set_listener(listener[listen], fn);
 			}
 		}else{
-			self.set_listener(listener, fn, method);
+			this.set_listener(listener, fn, method);
 		}
-		return self
+		return this
+	}
+
+	on_listener(fn, listener){
+		Object.keys(this.listeners[listener]).forEach((f) => {
+			fn(this.listeners[listener][f]);
+		})
 	}
 
 	set_listener(listener, fn, method=null){
-		let self = this;
-		if(typeof self.listeners[listener] == "object"){
-			self.listeners[listener].push(fn);
+		if(typeof this.listeners[listener] == "object"){
+			this.listeners[listener].push(fn);
 		}else{
-			self.listeners[listener] = [fn];
+			this.listeners[listener] = [fn];
 		}
 
-		setTimeout(function(){
-			if(self.self == null) return;
+		setTimeout(() =>{
+			if(this.self == null) return;
 
-			for(let f in self.listeners[listener]){
-				if(self.listeners[listener].hasOwnProperty(f)){
-					let _listener = self.listeners[listener][f];
-
-					self.self.addEventListener(listener, (event) => {
-						if(method != null){
-							if(method === "double_click"){
-								if(self.double_click_attempts === 0){
-									let previous_text = self.text;
-									self.val(__("Confirm"));
-									self.double_click_attempts = 1;
-									self.add_class(`${self.base_identifier}-confirm`).JQ().delay(2000).queue(function(next){
-										self.val(self.text === __("Confirm") ? previous_text : self.text);
-										self.double_click_attempts = 0;
-										self.remove_class(`${self.base_identifier}-confirm`);
-										next();
-									})
-								}else{
-									self.remove_class(`${self.base_identifier}-confirm`);
-									self.double_click_attempts = 0;
-									_listener(self, self.self, event);
-								}
-							}else{
-								_listener(self, self.self, event);
+			this.on_listener((listen) => {
+				this.self.addEventListener(listener, (event) => {
+					if(method != null && method === "double_click"){
+						if(this.double_click_attempts === 0){
+							let previous_text = this.text;
+							if(typeof this.text != "undefined" && this.text.length > 0){
+								this.val(__("Confirm"));
 							}
+							this.double_click_attempts = 1;
+							this.add_class(`${this.base_identifier}-confirm`).JQ().delay(2000).queue((next) => {
+								this.val(this.text === __("Confirm") ? previous_text : this.text);
+								this.double_click_attempts = 0;
+								this.remove_class(`${this.base_identifier}-confirm`);
+								next();
+							});
 						}else{
-							_listener(self, self.self, event);
+							this.remove_class(`${this.base_identifier}-confirm`);
+							this.double_click_attempts = 0;
+							listen(this, this.self, event);
 						}
-					});
-				}
-			}
+					}else{
+						listen(this, this.self, event);
+					}
+				});
+			}, listener, fn);
 		}, 0)
 	}
 
 	make_dom(){
-		let self = this;
-		setTimeout(function () {
-			if(typeof self.wrapper == "undefined"){
-				return self.html();
+		setTimeout(() => {
+			if(typeof this.wrapper == "undefined"){
+				return this.html();
 			}else{
-				$(self.wrapper).empty().append(self.html());
+				$(this.wrapper).empty().append(this.html());
 			}
 		},0)
 	}
@@ -187,12 +182,10 @@ class JSHtml{
 	}
 
 	default_listeners() {
-		let self = this;
-
-		setTimeout(function () {
-			if(self.tag === "input"){
-				self.on(["click", "change"], function(){
-					self.set_selection();
+		setTimeout(() => {
+			if(this.tag === "input"){
+				this.on(["click", "change"], () => {
+					this.set_selection();
 				})
 			}
 		}, 0)
@@ -207,43 +200,39 @@ class JSHtml{
 	}
 
 	enable(on_enable=true){
-		let self = this;
-		self.disabled = false;
-		setTimeout(function () {
+		this.disabled = false;
+		setTimeout(() => {
 			if(on_enable){
-				self.prop("disabled", false);
+				this.prop("disabled", false);
 			}
-			self.remove_class(self.base_identifier);
+			this.remove_class(this.base_identifier);
 		}, 0)
-
 
 		return this;
 	}
 
 	disable(on_disable=true){
-		let self = this;
-		self.disabled = true;
-		setTimeout(function () {
+		this.disabled = true;
+		setTimeout(() => {
 			if(on_disable){
-				self.prop("disabled", true);
+				this.prop("disabled", true);
 			}
-			self.add_class(self.base_identifier);
+			this.add_class(this.base_identifier);
 		},0)
 
-		return self;
+		return this;
 	}
 
 	css(prop="", val=""){
-		let self = this;
-		setTimeout(function () {
+		setTimeout(() => {
 			if(typeof prop == "object"){
 				for (let css in prop){
 					if(prop.hasOwnProperty(css)){
-						self.self.style[css] = prop[css];
+						this.self.style[css] = prop[css];
 					}
 				}
 			}else{
-				self.self.style[prop] = val;
+				this.self.style[prop] = val;
 			}
 		}, 0)
 	}
@@ -262,12 +251,11 @@ class JSHtml{
 	}
 
 	select(){
-		let self = this;
-		setTimeout(function () {
-			self.self.select();
+		setTimeout(() => {
+			this.self.select();
 		}, 0)
 
-		return self;
+		return this;
 	}
 
 	remove_class(class_name){
@@ -281,13 +269,12 @@ class JSHtml{
 	}
 
 	delete_selection(value, move_position=1){
-		let self = this;
 		let current_value = this.val();
 		let current_selection = window.window.getSelection().toString();
 
 		this.cursor_position = current_value.search(current_selection) + move_position;
 
-		self.val(current_value.replace(current_selection, value));
+		this.val(current_value.replace(current_selection, value));
 	}
 
 	has_selection(){
@@ -295,13 +282,12 @@ class JSHtml{
 	}
 
 	write(value){
-		let self = this;
-		if(self.is_disabled()) return;
+		if(this.is_disabled()) return;
 
-		let current_value = self.val();
+		let current_value = this.val();
 
-		if(self.has_selection()){
-			self.delete_selection(value);
+		if(this.has_selection()){
+			this.delete_selection(value);
 			/*setTimeout(function () {
 				self.trigger("change");
 			}, 0)*/
@@ -310,14 +296,14 @@ class JSHtml{
 			return;
 		}
 
-		let left_value = current_value.substring(0, self.cursor_position);
-		let right_value = current_value.substring(self.cursor_position, current_value.length);
+		let left_value = current_value.substring(0, this.cursor_position);
+		let right_value = current_value.substring(this.cursor_position, current_value.length);
 
-		self.val(left_value + value + right_value);
+		this.val(left_value + value + right_value);
 
 		//self.check_changes(current_value);
 
-		self.cursor_position ++;
+		this.cursor_position ++;
 
 
 		//self.trigger("change");
@@ -332,43 +318,39 @@ class JSHtml{
 	}
 
 	plus(value=1){
-		let self = this;
-		self.val(self.float_val() + value);
-		self.focus();
+		this.val(this.float_val() + value);
+		this.focus();
 
-		return self;
+		return this;
 	}
 
 	minus(value=1){
-		let self = this;
-		self.val(self.float_val() - value);
-		self.focus();
+		this.val(this.float_val() - value);
+		this.focus();
 
-		return self;
+		return this;
 	}
 
 	val(val=null, change=true){
-		let self = this;
-
 		if(val == null){
-			if(self.tag === "input"){
-				return self.JQ().val();
+			if(this.tag === "input"){
+				return this.JQ().val();
 			}else{
-				return self.JQ().html()
+				return this.JQ().html()
 			}
 		}else{
-			if(typeof self.text != "undefined") self.text = val;
-			setTimeout(function () {
-				if(self.tag === "input"){
-					self.JQ().val(val);
-					if(change) self.trigger("change");
+			if(typeof this.text != "undefined") this.text = val;
+			setTimeout(() => {
+				if(this.tag === "input"){
+					this.JQ().val(val);
+					if(change) this.trigger("change");
 				}else{
-					self.empty().JQ().html(self.get_content_rendered(val));
+					this.empty().JQ().html(this.get_content_rendered(val));
 				}
 			}, 0)
 		}
 
-		return self;
+		return this;
 	}
 
 	prepend(content){
@@ -429,55 +411,40 @@ class JSHtml{
 	}
 
 	check_changes(last_val){
-		let self = this;
-
-		setTimeout(function () {
-			let save_cursor_position = self.cursor_position;
-			if(self.val() !== last_val){
-				self.trigger("change");
+		setTimeout(() => {
+			let save_cursor_position = this.cursor_position;
+			if(this.val() !== last_val){
+				this.trigger("change");
 			}
 
-			self.cursor_position = save_cursor_position;
-			self.focus();
+			this.cursor_position = save_cursor_position;
+			this.focus();
 		}, 0)
 	}
 
 	delete_value(){
-		let self = this;
-		if(self.is_disabled()) return;
+		if(this.is_disabled()) return;
 
-		let current_value = self.val();
+		let current_value = this.val();
 
-		if(self.has_selection()){
-			self.delete_selection("", 0);
-			/*setTimeout(function () {
-				self.trigger("change");
-			}, 0)*/
-			//self.trigger("change");
-			//self.check_changes(current_value);
+		if(this.has_selection()){
+			this.delete_selection("", 0);
 			return;
 		}
 
-		let left_value = current_value.substring(0, self.cursor_position);
-		let right_value = current_value.substring(self.cursor_position, current_value.length);
+		let left_value = current_value.substring(0, this.cursor_position);
+		let right_value = current_value.substring(this.cursor_position, current_value.length);
 		let new_value;
 
-		if(self.cursor_position === self.val().length){
-			new_value = left_value.substring(0, self.val().length - 1);
-			self.cursor_position --;
+		if(this.cursor_position === this.val().length){
+			new_value = left_value.substring(0, this.val().length - 1);
+			this.cursor_position --;
 		}else{
-			new_value = left_value.substring(0, self.cursor_position - 1) + right_value;
-			self.cursor_position --;
+			new_value = left_value.substring(0, this.cursor_position - 1) + right_value;
+			this.cursor_position --;
 		}
 
-		self.val(new_value);
-
-		//self.check_changes(current_value);
-		/*setTimeout(function () {
-			self.trigger("change");
-		}, 0)*/
-
-		//self.focus();
+		this.val(new_value);
 	}
 
 	trigger(event){
@@ -511,10 +478,9 @@ class JSHtml{
 	};
 
 	setInputFilter(inputFilter) {
-		let self = this;
-		setTimeout(function () {
-			["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function (event) {
-				self.self.addEventListener(event, function () {
+		setTimeout(() => {
+			["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach((event) => {
+				this.self.addEventListener(event, function () {
 					if (inputFilter(this.value)) {
 						this.oldValue = this.value;
 						this.oldSelectionStart = this.selectionStart;
