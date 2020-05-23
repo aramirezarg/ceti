@@ -18,6 +18,7 @@ class CETIForm{
 				{fieldname: self.container, fieldtype: 'HTML'},
 				{fieldname: 'ht', fieldtype: 'HTML'},
 			],
+			
 			/*primary_action: function() {
 				if(self.form) {
 					self.form.save(self.has_payment);
@@ -83,18 +84,23 @@ class CETIForm{
 		}, 200);
 	}
 
-	load(){
+	load(background=false){
 		let self = this;
 		if(typeof self.before_load != "undefined"){
 			self.before_load()
 		}
-		self.form = new FrappeForm(self.options, self.container);
+		self.form = new FrappeForm(self.options, self.container, background);
 	}
 
 	reload(){
 		let self = this;
 		$("div[data-fieldname=" + this.container + "]").empty();
 		self.load();
+	}
+
+	background_reload(){
+		let self = this;
+		self.load(true);
 	}
 
 	show(){
@@ -107,16 +113,16 @@ class CETIForm{
 }
 
 class FrappeForm {
-	constructor(options, wrapper) {
+	constructor(options, wrapper, background=false) {
 		Object.assign(this, options, {
 			wrapper: $("div[data-fieldname=" + wrapper + "]")
 		});
 		this.container = wrapper;
 		this.ready = false;
-		this.get_data();
+		this.get_data(background);
 	}
 
-	get_data() {
+	get_data(background=false) {
 		frappe.call({
 			method: 'ceti.ceti.doctype.ceti_form.ceti_form.get_form_data',
 			args: {
@@ -124,8 +130,9 @@ class FrappeForm {
 				docname: this.docname,
 				form_name: this.form_name
 			},
-			freeze: true,
+			freeze: background===false,
 		}).then(r => {
+			$("div[data-fieldname=" + this.container + "]").empty();
 			const { doc, ceti_form, links } = r.message;
 			ceti_form.ceti_form_fields.map(df => {
 				if (df.fieldtype === 'Table') {

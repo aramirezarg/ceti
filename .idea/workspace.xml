@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d99d237-9fb2-454b-8867-c04e9ca0027b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/rSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ceti/ceti/doctype/ceti_form/ceti_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/ceti/ceti/doctype/ceti_form/ceti_form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ceti/public/js/jshtml-class.js" beforeDir="false" afterPath="$PROJECT_DIR$/ceti/public/js/jshtml-class.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ceti/public/js/ceti-form-class.js" beforeDir="false" afterPath="$PROJECT_DIR$/ceti/public/js/ceti-form-class.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +25,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="ignore.virus.scanning.warn.message" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../frappe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -60,6 +58,7 @@
       <workItem from="1589738970760" duration="3010000" />
       <workItem from="1589756869514" duration="3975000" />
       <workItem from="1589841823365" duration="2899000" />
+      <workItem from="1590084500124" duration="1167000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1588235853432</created>
