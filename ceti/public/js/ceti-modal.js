@@ -95,11 +95,11 @@ class CETIModal{
 	buttons_container(){return this.modal.$wrapper.find(".text-right.buttons .btn-container")}
 
 	show(){
-		this.modal.show()
+		this.modal.show();
 	}
 
 	hide(){
-		this.modal.hide()
+		this.modal.hide();
 	}
 
 	loading() {

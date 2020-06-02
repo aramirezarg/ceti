@@ -533,10 +533,11 @@ def get_form_data(doctype, docname=None, form_name=None):
 
 	if docname:
 		doc = frappe.get_doc(doctype, docname)
-		if has_ceti_form_permission(doctype, docname, ptype='read'):
-			out.doc = doc
-		else:
-			frappe.throw(_("Not permitted"), frappe.PermissionError)
+		out.doc = doc
+	"""if has_ceti_form_permission(doctype, docname, ptype='read'):
+		out.doc = doc
+	else:
+		frappe.throw(_("Not permitted"), frappe.PermissionError)"""
 
 	# For Table fields, server-side processing for meta
 	for field in out.ceti_form.ceti_form_fields:
