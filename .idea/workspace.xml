@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d99d237-9fb2-454b-8867-c04e9ca0027b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ceti/ceti/doctype/trigger_method/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/ceti/doctype/trigger_method/test_trigger_method.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/ceti/doctype/trigger_method/trigger_method.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/ceti/doctype/trigger_method/trigger_method.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/ceti/doctype/trigger_method/trigger_method.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ceti/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ceti/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ceti/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ceti/public/js/ceti-modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/ceti/public/js/ceti-modal.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +31,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="ignore.virus.scanning.warn.message" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../restaurant_management" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -131,7 +123,8 @@
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Update to Version 0.0.2" />
     <MESSAGE value="Update to __version__ = '1.0.0'" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update to __version__ = '1.0.0'" />
+    <MESSAGE value="Restore App" />
+    <option name="LAST_COMMIT_MESSAGE" value="Restore App" />
   </component>
   <component name="WindowStateProjectService">
     <state x="653" y="274" key="#Notifications" timestamp="1588236001145">
@@ -142,10 +135,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1588304249176" />
-    <state x="548" y="166" key="FileChooserDialogImpl" timestamp="1590967415782">
+    <state x="548" y="166" key="FileChooserDialogImpl" timestamp="1591085023239">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="548" y="166" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1590967415782" />
+    <state x="548" y="166" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1591085023239" />
     <state x="360" y="144" key="Vcs.Push.Dialog.v2" timestamp="1588304258648">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
