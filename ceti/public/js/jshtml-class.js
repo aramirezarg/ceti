@@ -511,6 +511,6 @@ class JSHtml{
 			return v.toString(16);
 		});
 
-		return "jstml" + id;
+		return "jshtml" + id;
 	}
 }
