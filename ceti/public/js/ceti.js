@@ -59,8 +59,10 @@ var set_icons = function (){
 var set_icons1 = function (){
     let div = document.getElementsByClassName('desk-sidebar')[0];
     let variance_color = true;
+    console.log("set icons")
 
     div.childNodes.forEach((item) => {
+        cnsole.load(item);
         setTimeout(() => {
             let element = item.getAttribute("href").split("/").pop();
             let color = variance_color ? typeof elements[element].color != "undefined" ? elements[element].color : "orange" : "#829dab";
