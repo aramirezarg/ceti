@@ -1,0 +1,103 @@
+body {
+    color: #252f4e !important;
+}
+
+.widget {
+    border-color: #556da5 !important;
+}
+
+#navbar-search {
+    background-color: white !important;
+}
+
+.form-section {
+    border-color: #96a9d4 !important;
+}
+
+.section-head .uppercase {
+    font-weight: bold !important;
+    font-size: 13.5px !important;
+    margin: 0 !important;
+    color: #2c425a !important;
+}
+
+
+.section-head.collapsed .uppercase {
+    font-weight: normal !important;
+    font-size: 11px !important;
+}
+
+.page-container .container {
+    width: 100% !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.mobile-list {
+    background-color: #252f4e !important;
+}
+
+.desk-sidebar {
+    background-color: #2A3F54 !important;
+}
+
+.navbar-default {
+    background-color: #192942 !important;
+    border-color: #192942 !important;
+    color: white !important;
+}
+
+.navbar-default :hover {
+    color: gray !important;
+}
+
+.sidebar-item > span  {
+    color: #E7E7E7  !important;
+    font-size: 14px !important;
+}
+
+.sidebar-item.selected > span  {
+    color: #3f5177 !important;
+}
+
+.sidebar-item:hover  {
+    background-color: #aeb8bf !important;
+}
+
+.sidebar-item:hover > span  {
+    color: black !important;
+}
+
+.desk-page {
+    padding-left: 10px !important;
+}
+
+.page-head {
+ background: #eeeef3 !important;
+}
+
+@media (min-width: 1199px)
+body.full-width .container {
+    width: 100% !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+@media (min-width: 1200px)
+.container {
+    width: 100% !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+@media (min-width: 992px)
+.container {
+    width: 100% !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+@media (min-width: 768px)
+.container {
+    width: 100% !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}

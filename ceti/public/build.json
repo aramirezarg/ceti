@@ -1,0 +1,8 @@
+{
+    "js/ceti.min.js": [
+        "public/js/fingerprint2.js"
+    ],
+    "css/ceti.min.css": [
+        "public/js/ceti.css"
+    ]
+}

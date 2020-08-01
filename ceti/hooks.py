@@ -11,6 +11,16 @@ app_color = "grey"
 app_email = "info@ceti.systems"
 app_license = "MIT"
 
+
+app_include_css = [
+    "/assets/ceti/css/ceti.css"
+]
+
+app_include_js = [
+    "/assets/ceti/js/fingerprint2.js",
+    "/assets/ceti/js/ceti.js"
+]
+
 # Includes in <head>
 # ------------------
 
