@@ -62,7 +62,11 @@ var set_icons1 = function (){
 
     div.childNodes.forEach((item) => {
         setTimeout(() => {
-            let element = item.getAttribute("href").split("/").pop();
+            let element = item.getAttribute("href");
+            if(typeof element == "undefined" || element == null) return;
+
+            element = element.split("/").pop();
+
             let color = variance_color ? typeof elements[element].color != "undefined" ? elements[element].color : "orange" : "#829dab";
             let icon = typeof elements[element].icon != "undefined" ? elements[element].icon : elements[element];
             let icon_direction = `<span class="fa fa-angle-right" style="color: slategray !important; right: 20px; position: absolute; font-size: 20px !important;"/>`;
