@@ -26,7 +26,7 @@ class CETIForm{
 			},*/
 			//primary_action_label: __("Save"),
 			on_hide: function () {
-				//close_grid_and_dialog();
+				close_grid_and_dialog();
 			}
 		});
 
@@ -229,6 +229,12 @@ class FrappeForm {
 				}
 			}
 		}
+
+		setInterval(() => {
+			this.wrapper.find("[data-fieldtype='Table']").find("div[data-fieldname='name']").hide();
+			this.wrapper.find("[data-fieldtype='Table']").find("button[data-action='delete_all_rows']").hide();
+			this.wrapper.find("[data-fieldtype='Table']").find(".grid-delete-row").hide();
+		}, 100)
 	}
 
 	get_form(){

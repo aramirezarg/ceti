@@ -17,7 +17,6 @@ app_include_css = [
 ]
 
 app_include_js = [
-    "/assets/ceti/js/fingerprint2.js",
     "/assets/ceti/js/ceti.js"
 ]
 

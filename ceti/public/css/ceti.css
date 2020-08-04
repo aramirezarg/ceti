@@ -2,6 +2,37 @@ body {
     color: #252f4e !important;
 }
 
+.navbar-nav>li>a {
+    color: #adc3dd !important;
+}
+
+
+.navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a {
+    color: #adc3dd !important;
+    background-color: #5A738E !important;
+}
+
+.navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    color: #adc3dd !important;
+    background-color: #3f5177 !important;
+}
+
+.navbar .dropdown .standard-image {
+    color: #96b4d4 !important;
+}
+
+.col-xs-6.page-actions{
+    width: 100% !important;
+}
+
+.col-xs-5.page-actions{
+    width: 100% !important;
+}
+
+.col-xs-5.page-actions{
+    width: 100% !important;
+}
+
 .widget {
     border-color: #556da5 !important;
 }
@@ -89,13 +120,14 @@ body.full-width .container {
     padding-left: 10px !important;
     padding-right: 10px !important;
 }
-@media (min-width: 992px)
-.container {
-    width: 100% !important;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+@media (min-width: 992px){
+    .container {
+        width: 100% !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
 }
-@media (min-width: 768px)
+@media (min-width: 768px){
 .container {
     width: 100% !important;
     padding-left: 10px !important;
