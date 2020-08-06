@@ -5,6 +5,7 @@
 from __future__ import unicode_literals
 import frappe
 import json
+import hashlib
 
 
 @frappe.whitelist()
@@ -18,3 +19,15 @@ def call(model, name, method, args=None):
         #return doc.run_method(method, **kwargs)
     else:
         return getattr(doc, method)
+
+
+def encrypt(data, method):
+    if not isinstance(data, bytes):
+        data = data.encode('utf-8')
+
+    if method == 'md5':
+        return hashlib.md5(data).hexdigest()
+    if method == 'sha1':
+        return hashlib.sha1(data).hexdigest()
+    if method == 'sha224':
+        return hashlib.sha3_224(data).hexdigest()
