@@ -1,45 +1,33 @@
 class CETIModal{
 	constructor(options) {
-		Object.assign(this, options, {
-			id: "ceti-" + Math.random().toString(36).substr(2, 15),
-			modal: undefined
-		});
+		Object.assign(this, options);
+		this.id = "ceti-" + Math.random().toString(36).substr(2, 15);
+		this.modal = null;
 		this.construct();
-		this.show();
 	}
 
 	construct(){
-		let self = this;
-		self.modal = new frappe.ui.Dialog({
-			title: self.title,
-			/*fields: [
-				{fieldname: self.id, fieldtype: 'HTML'},
-				{fieldname: 'ht', fieldtype: 'HTML'},
-			],*/
-			/*primary_action: function() {
-				if(window[self.container]) {
-					window[self.container].save(self.has_payment);
-				}
-			},*/
+		this.modal = new frappe.ui.Dialog({
+			title: this.title,
 			primary_action_label: __("Save"),
 		});
 
-		/*if (self.disabled_to_save){
-			self.modal.get_primary_btn().attr('disabled', true).addClass("hidden");
-		}*/
+		this.show();
 		
-		if(self.full_page){
-			self.modal.$wrapper.find('.modal-dialog').css({
-				"width": "100%", "height": "100%", "left": "0", "top": "0", "margin": "0", "padding":"0", "border-style": "none"
+		if(this.full_page){
+			this.modal.$wrapper.find('.modal-dialog').css({
+				"width": "100%", "height": "100%", "left": "0", "top": "0", "margin": "0", "padding":"0", "border-style": "none",
+				"max-width": "unset", "max-height": "unset"
 			});
 
-			self.modal.$wrapper.find('.modal-content').css({
-				"width": "100%", "height": "100%", "left": "0", "top": "0", "border-style": "none"
+			this.modal.$wrapper.find('.modal-content').css({
+				"width": "100%", "height": "100%", "left": "0", "top": "0", "border-style": "none", "border-radius": "0",
+				"max-width": "unset", "max-height": "unset"
 			});
 		}
 
-		setTimeout(function () {
-			self.render();
+		setTimeout(() => {
+			this.render();
 		}, 200);
 	}
 
@@ -48,41 +36,45 @@ class CETIModal{
 	}
 
 	render(){
-		let self = this;
-		self.set_title();
+		this.set_title();
 
-		if(typeof self.customize != "undefined"){
-			self.modal.$wrapper.find(".modal-body").empty();
-			self.modal.$wrapper.css({
-				"color": "#73879C"
-			})
-			self.modal.$wrapper.find('.modal-header').css({
-				"background-color": "#2A3F54",
+		if(typeof this.customize != "undefined"){
+			this.modal.$wrapper.find(".modal-body").empty();
+
+			this.modal.$wrapper.css({
+				"height": `calc(100% - ${this._adjust_height()}px)`,
+				"border-bottom": "var(--default-line)",
+			});
+
+			this.modal.$wrapper.find('.modal-header').css({
 				"padding": "5px",
-				"height": "42px",
-				"border-style": "none",
+				"border-bottom": "var(--default-line)",
 				"border-radius": "0",
 			});
-			self.modal.$wrapper.find('.modal-body').css({
+
+			this.modal.$wrapper.find('.modal-body').css({
 				"background-color": "transparent",
 				"padding": "0",
-				"height": `calc(100% - ${42 + this._adjust_height()}px)`,
 				"border-style": "none",
 				"border-radius": "0",
 				"overflow-y": "auto"
 			});
-			self.modal.$wrapper.find('.modal-title').css({
+
+			this.modal.$wrapper.find('.modal-title').css({
 				"margin": "0"
 			});
-			self.modal.$wrapper.find(".text-right.buttons").prepend("<label class='btn-container'></label>")
+
+			this.modal.$wrapper.find(".modal-actions").prepend("<span class='btn-container'></span>").css({
+				"top": "5px"
+			});
 		}
 
-		if(typeof self.from_server == "undefined") {
-			if(self.call_back){
-				self.call_back();
+		if(typeof this.from_server == "undefined") {
+			if(this.call_back){
+				this.call_back();
 			}
 		}else{
-			self.load_data();
+			this.load_data();
 		}
 	}
 
@@ -92,7 +84,7 @@ class CETIModal{
 
 	container(){return this.modal.$wrapper.find(".modal-body")}
 	title_container(){return this.modal.$wrapper.find(".modal-title")}
-	buttons_container(){return this.modal.$wrapper.find(".text-right.buttons .btn-container")}
+	buttons_container(){return this.modal.$wrapper.find(".modal-actions .btn-container")}
 
 	show(){
 		this.modal.show();
@@ -111,27 +103,24 @@ class CETIModal{
 	stop_loading() {
 		//this.modal.fields_dict.ht.$wrapper.html("");
 	}
-	load_data(){
-		let self = this;
-		console.log(self.model, self.model_name, self.action);
 
+	load_data(){
 		CETI.api.call({
-			model: self.model,
-			name: self.model_name,
-			method: self.action,
+			model: this.model,
+			name: this.model_name,
+			method: this.action,
 			args:{},
-			always: function (r) {
-				self.container().empty().append(r.message);
-				self.stop_loading();
-				if(self.call_back){
-					self.call_back();
+			always: (r) => {
+				this.container().empty().append(r.message);
+				this.stop_loading();
+				if(this.call_back){
+					this.call_back();
 				}
 			},
 		})
     }
 
     reload(){
-		//this.call_back = call_back;
 		this.load_data();
 	}
 }

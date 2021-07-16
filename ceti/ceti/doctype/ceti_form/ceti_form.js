@@ -3,6 +3,7 @@ frappe.ceti_form = {
 		return new Promise(resolve => {
 			var me = this,
 				doc = frm.doc;
+			console.log(frm.fields_dict.ceti_form_fields)
 			if (doc.doc_type) {
 				frappe.model.with_doctype(doc.doc_type, function() {
 					var fields = $.map(frappe.get_doc("DocType", frm.doc.doc_type).fields, function(d) {
@@ -20,7 +21,10 @@ frappe.ceti_form = {
 							return null;
 						}
 					});
-					frappe.meta.get_docfield("CETI Form Field", "fieldname", frm.doc.name).options = [""].concat(fields);
+
+					frm.fields_dict.ceti_form_fields.grid.update_docfield_property(
+						'fieldname', 'options', fields
+					);
 					frappe.meta.get_docfield("CETI Form", "amount_field", frm.doc.name).options = [""].concat(currency_fields);
 					frm.refresh_field("amount_field");
 					resolve();
@@ -59,6 +63,8 @@ frappe.ui.form.on("CETI Form", {
 							default: field.default,
 							read_only: field.read_only,
 							depends_on: field.depends_on,
+							mandatory_depends_on: field.mandatory_depends_on,
+							read_only_depends_on: field.read_only_depends_on,
 							hidden: field.hidden,
 							description: field.description
 						});

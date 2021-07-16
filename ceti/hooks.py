@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from . import __version__ as app_version
 
 app_name = "ceti"
 app_title = "CETI"
@@ -11,21 +10,22 @@ app_color = "grey"
 app_email = "info@ceti.systems"
 app_license = "MIT"
 
-
 app_include_css = [
-    "/assets/ceti/css/ceti.css"
-]
-
-app_include_js = [
-    "/assets/ceti/js/ceti.js"
+    "/assets/ceti/css/ceti.css",
+    "/assets/ceti/css/num-pad.css",
 ]
 
 # Includes in <head>
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/ceti/css/ceti.css"
-# app_include_js = "/assets/ceti/js/ceti.js"
+app_include_js = [
+    "/assets/ceti/js/jshtml-class.js",
+    "/assets/ceti/js/num-pad-class.js",
+    "/assets/ceti/js/ceti-modal.js",
+    "/assets/ceti/js/ceti-api.js",
+    "/assets/ceti/js/ceti-form-class.js",
+]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/ceti/css/ceti.css"
@@ -143,4 +143,3 @@ app_include_js = [
 # exempt linked doctypes from being automatically cancelled
 #
 # auto_cancel_exempted_doctypes = ["Auto Repeat"]
-

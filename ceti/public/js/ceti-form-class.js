@@ -1,35 +1,26 @@
 class CETIForm{
 	constructor(options) {
-		Object.assign(this, options, {
-			container: "form-" + Math.random().toString(36).substr(2, 9),
-			modal: null,
-			form: null,
-		});
+		Object.assign(this, options);
+		this.container = "form-" + Math.random().toString(36).substr(2, 9);
+		this.modal = null;
+		this.form = null;
 		this.options = options;
 		this.construct();
 		this.show();
 	}
 
 	construct(){
-		let self = this;
-		self.modal = new frappe.ui.Dialog({
-			title: self.title,
+		this.modal = new frappe.ui.Dialog({
+			title: this.title,
 			fields: [
-				{fieldname: self.container, fieldtype: 'HTML'},
+				{fieldname: this.container, fieldtype: 'HTML'},
 				{fieldname: 'ht', fieldtype: 'HTML'},
 			],
-			
-			/*primary_action: function() {
-				if(self.form) {
-					self.form.save(self.has_payment);
-				}
-			},*/
-			//primary_action_label: __("Save"),
-			on_hide: function () {
+			on_hide: () => {
 				close_grid_and_dialog();
+				this.stop_clear_html();
 			}
 		});
-
 
 		function close_grid_and_dialog() {
 			// close open grid row
@@ -42,82 +33,91 @@ class CETIForm{
 
 			// close open dialog
 			if (cur_dialog && !cur_dialog.no_cancel_flag) {
-				cur_dialog.cancel();
+				//cur_dialog.cancel();
 				return false;
 			}
 		}
 
-		if (!self.disabled_to_save){
-			self.modal.set_primary_action(__("Save"), function() {
-				if(self.form) {
-					self.form.save(self.has_payment);
+		if (!this.disabled_to_save){
+			this.modal.set_primary_action(__("Save"), () => {
+				if(this.form) {
+					this.form.save(this.has_payment);
 				}
 			});
-
-			/*self.modal["primary_action"] = function() {
-				if(self.form) {
-					self.form.save(self.has_payment);
-				}
-			}*/
-			//self.modal.get_primary_btn().attr('disabled', true).addClass("hidden");
 		}
 
-		self.modal.fields_dict.ht.$wrapper.html(
+		this.modal.fields_dict.ht.$wrapper.attr(
 			`<div class='loading-form' style='font-size: xx-large; text-align: center; color: #8D99A6'>${__("Loading")}...</div>`
 		);
 
-		if(self.close_only_button){
-			self.modal.$wrapper.attr({"data-keyboard":"false", "data-backdrop": "static", "id": `${self.container}`})
+		if(this.close_only_button){
+			this.modal.$wrapper.attr({"data-keyboard":"false", "data-backdrop": "static", "id": `${self.container}`})
 		}
 
-		self.modal.$wrapper.prepend(`
+		this.modal.$wrapper.prepend(`
 			<style>
-				#${self.container} .form-grid .grid-body .data-row .col.col-xs-1 .btn-open-row{
+				#${this.container} .form-grid .grid-body .data-row .col.col-xs-1 .btn-open-row{
 					display: none;
 				}
 			</style>
-		`)
-		//
+		`);
 
-		setTimeout(function () {
-			self.load();
+		this.modal.$wrapper.attr({
+			"ceti-form": "ceti-form"
+		});
+
+		setTimeout(() => {
+			this.load();
 		}, 200);
 	}
 
 	load(background=false){
-		let self = this;
-		if(typeof self.before_load != "undefined"){
-			self.before_load()
+		if(typeof this.before_load != "undefined"){
+			this.before_load()
 		}
-		self.form = new FrappeForm(self.options, self.container, background);
+		this.form = new FrappeForm(this, background);
 	}
 
 	reload(){
-		let self = this;
 		$("div[data-fieldname=" + this.container + "]").empty();
-		self.load();
+		this.load();
 	}
 
 	background_reload(){
-		let self = this;
-		self.load(true);
+		this.load(true);
 	}
 
 	show(){
-		this.modal.show()
+		this.modal.show();
+		this.init_clear_html();
 	}
 
 	hide(){
-		this.modal.hide()
+		this.modal.hide();
+	}
+
+	init_clear_html(){
+		this.interval_clear = setInterval(() => {
+			let base_object = $(document).find("[ceti-form='ceti-form']").find("[data-fieldtype='Table']");
+			if(base_object != null) {
+				base_object.find("div[data-fieldname='name']").hide();
+				base_object.find("button[data-action='delete_all_rows']").hide();
+				base_object.find(".grid-delete-row").hide();
+			}
+		}, 150);
+	}
+
+	stop_clear_html(){
+		clearInterval(this.interval_clear);
 	}
 }
 
-class FrappeForm {
-	constructor(options, wrapper, background=false) {
-		Object.assign(this, options, {
-			wrapper: $("div[data-fieldname=" + wrapper + "]")
+class FrappeForm{
+	constructor(CetiForm, background=false) {
+		Object.assign(this, CetiForm.options, {
+			wrapper: $("div[data-fieldname=" + CetiForm.container + "]"),
 		});
-		this.container = wrapper;
+		this.container = CetiForm.container;
 		this.ready = false;
 		this.get_data(background);
 	}
@@ -134,9 +134,9 @@ class FrappeForm {
 		}).then(r => {
 			$("div[data-fieldname=" + this.container + "]").empty();
 			const { doc, ceti_form, links } = r.message;
+			this.doc = doc;
 			ceti_form.ceti_form_fields.map(df => {
 				if (df.fieldtype === 'Table') {
-
 					df.get_data = () => {
 						let data = [];
 						if(doc) {
@@ -158,11 +158,9 @@ class FrappeForm {
 	}
 
 	render(doc, ceti_form) {
-		let self = this;
 		const query_params = frappe.utils.get_query_params();
 
 		ceti_form.ceti_form_fields.map(df => {
-
 			if (df.fieldtype==='Attach') {
 				df.is_private = true;
 			}
@@ -189,6 +187,8 @@ class FrappeForm {
 
 		this.wrapper.find(".form-column").unwrap(".section-body");
 
+		this.wrapper.attr({"ceti-form": 'ceti-form'});
+
 		if(doc) {
 			this.field_group.set_values(doc);
 		}
@@ -206,8 +206,8 @@ class FrappeForm {
 
 		this.set_initial_values(doc);
 
-		if(typeof self.after_load != "undefined"){
-			self.after_load();
+		if(typeof this.after_load != "undefined"){
+			this.after_load();
 		}
 	}
 
@@ -229,12 +229,6 @@ class FrappeForm {
 				}
 			}
 		}
-
-		setInterval(() => {
-			this.wrapper.find("[data-fieldtype='Table']").find("div[data-fieldname='name']").hide();
-			this.wrapper.find("[data-fieldtype='Table']").find("button[data-action='delete_all_rows']").hide();
-			this.wrapper.find("[data-fieldtype='Table']").find(".grid-delete-row").hide();
-		}, 100)
 	}
 
 	get_form(){
@@ -295,12 +289,11 @@ class FrappeForm {
 	save(for_payment, on_save=null) {
 		if(!this.ready) return;
 
-		let self = this;
-		if (self.validate()===false) {
+		if (this.validate()===false) {
 			return false;
 		}
 
-		let data = self.get_values();
+		let data = this.get_values();
 		if (!data) {
 			return false;
 		}
@@ -311,25 +304,22 @@ class FrappeForm {
 
 		window.saving = true;
 		frappe.form_dirty = false;
-		var $form = self.get_form();
+		var $form = this.get_form();
 
 		frappe.call({
 			type: "POST",
 			method: 'ceti.ceti.doctype.ceti_form.ceti_form.accept',
 			args: {
 				data: data,
-				ceti_form: self.form_name,
-				docname: self.docname,
+				ceti_form: this.form_name,
+				docname: this.docname,
 				for_payment: for_payment
 			},
 			freeze: true,
 			btn: $form.find("[type='submit']"),
-			callback: function(data) {
+			callback: (data) => {
 				if(!data.exc) {
-					self.doc_name = data.message.name;
-					if(!frappe.login_required) {
-						show_success_message($form);
-					}
+					this.doc_name = data.message.name;
 
 					if(frappe.is_new && frappe.login_required) {
 						// reload page (with ID)
@@ -342,12 +332,12 @@ class FrappeForm {
 					}
 
 					// refresh values
-					if (self.ceti_form) {
-						self.ceti_form.field_group.set_values(data.message);
+					if (this.ceti_form) {
+						this.ceti_form.field_group.set_values(data.message);
 					}
 
-					if(typeof self.call_back != "undefined"){
-						self.call_back();
+					if(typeof this.call_back != "undefined"){
+						this.call_back();
 					}
 
 					if(on_save != null){
@@ -363,24 +353,5 @@ class FrappeForm {
 			}
 		});
 		return true;
-	}
-}
-
-function show_success_message($form) {
-	$form.addClass("hide");
-	$(".comments, .introduction, .page-head").addClass("hide");
-	scroll(0, 0);
-	set_message(frappe.success_link, true);
-}
-
-function set_message(msg, permanent) {
-	$(".form-message")
-		.html(msg)
-		.removeClass("hide");
-
-	if(!permanent) {
-		setTimeout(function() {
-			$(".form-message").addClass('hide');
-		}, 5000);
 	}
 }

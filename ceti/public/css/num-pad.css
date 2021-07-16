@@ -4,9 +4,23 @@
     height: 100%;
 }
 
-.pad-container .pad-btn {
-    border: 2px solid #ddd;
-    border-radius: 4px;
+.pad-container .pad-col.pad-btn {
+    background-color: var(--fg-color);
+    border-color: rgba(119, 136, 153, 0.39);
+    border-width: 1px;
+    border-style: ridge;
+}
+
+.pad-container .pad-col.pad-btn.btn-success {
+    background-color: var(--success);
+}
+
+.pad-container .pad-col.pad-btn.btn-success:hover {
+    background-color: rgba(3, 121, 49, 0.6);
+}
+
+.pad-container .pad-btn:hover {
+    background-color: rgba(37, 75, 111, 0.03);
 }
 
 .pad-container .pad-col {
@@ -33,16 +47,11 @@
 
 .pad-container .pad-col.disabled {
     pointer-events: none;
-    background-color: #e3e3e3;
     color: #a9a9a9 !important;
 }
 
-.pad-container .pad-head {
-    color: #5A738E !important;
-}
-
 .pad-container .pad-row {
-    height: 20%;
+    height: 25%;
 }
 
 .pad-container .pad-col.sm {
@@ -64,22 +73,12 @@
 
 .pad-container .pad-col span {
     font-size: 20px;
-    color: lightslategray;
-}
-
-.pad-container .pad-col.btn-primary span {
-    color: white;
-}
-
-.pad-container .pad-col.btn-success span {
-    color: white;
 }
 
 .pad-container .pad-label {
     background-color: transparent;
     text-align: right !important;
     padding: 0 10px 0 0;
-    color: #5A738E;
     cursor: default;
 }
 
